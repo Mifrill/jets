@@ -20,11 +20,10 @@ module Jets
       end
     end
 
-    def get(path, options)
-      create_route(options.merge(path: path, method: :get))
-    end
-
     def create_route(options)
+      # Currently only using scope to add namespace
+      # TODO: Can use it to add additional things like authorization_type
+      # Would be good to add authorization_type at the controller level also
       options[:path] = add_namespace(options[:path])
       @routes << Route.new(options)
     end
